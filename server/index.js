@@ -1,32 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
-const db = "mongodb+srv://manoj:Manoj1234@cluster0.bqsisjb.mongodb.net/userProfile?retryWrites=true&w=majority"
-mongoose
-  .connect(db)
-  .then(() => {
-    console.log(' database connection succesful');
-  })
-  .catch((err) => {
-    console.log(`Not connected`, err);
-  });
 const app = express();
-app.get('/', (req, res) => {
-  res.send(`Hello Manoj`);
-})
+require('./Database/mongoose');
+app.use(express.json());
 
-const middleware = (req, res, next) => {
-  console.log("Hello Middleware");
-  next();
-}
-
-app.get('/getdetails', middleware, (req, res) => {
-  res.send('Get Details');
-})
+const User = require('./models/userSchema');
+app.use(require('./router/auth'));
 
 app.listen(3000, (err) => {
   if (err) {
-    console.log("Error", err);
+    console.log('Error', err);
   }
   console.log(`Server is running on port 3000`);
-})
+});

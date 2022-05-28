@@ -1,17 +1,32 @@
-const http = require('http');
+const express = require('express');
+const mongoose = require('mongoose');
 
-const port = 8000;
+const db = "mongodb+srv://manoj:Manoj1234@cluster0.bqsisjb.mongodb.net/userProfile?retryWrites=true&w=majority"
+mongoose
+  .connect(db)
+  .then(() => {
+    console.log(' database connection succesful');
+  })
+  .catch((err) => {
+    console.log(`Not connected`, err);
+  });
+const app = express();
+app.get('/', (req, res) => {
+  res.send(`Hello Manoj`);
+})
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('React Project');
-});
+const middleware = (req, res, next) => {
+  console.log("Hello Middleware");
+  next();
+}
 
-server.listen(port, function (err) {
-    if (err) {
-        console.log(err);
-    }
+app.get('/getdetails', middleware, (req, res) => {
+  res.send('Get Details');
+})
 
-    console.log("This server is running on", port);
+app.listen(3000, (err) => {
+  if (err) {
+    console.log("Error", err);
+  }
+  console.log(`Server is running on port 3000`);
 })

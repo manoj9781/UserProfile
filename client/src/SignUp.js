@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import signUp from './signUp.jpg'
+import signUp from './signUp.jpg';
 import './signup.css';
-
-function SignUp() {
+import { useNavigate } from 'react-router-dom';
+const SignUp = () => {
+  const navigation = useNavigate();
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -19,6 +20,7 @@ function SignUp() {
     value = e.target.value;
 
     setUser({ ...user, [name]: value });
+    console.log('Sign Up', value);
   };
 
   const postData = async (event) => {
@@ -48,6 +50,7 @@ function SignUp() {
     } else {
       window.alert('Succesful');
       console.log('succesful');
+      navigation('/login');
     }
   };
   return (
@@ -138,6 +141,6 @@ function SignUp() {
       </section>
     </div>
   );
-}
+};
 
 export default SignUp;

@@ -37,16 +37,23 @@ router.post('/register', async (req, res) => {
   }
 });
 
+let user;
 router.post('/getdetails', async (req, res) => {
     try {
         const { email } = req.body;
         if (!email) {
             return res.status(400).json({ error: "Please enter Email" });
         }
-        const getData = await User.findOne({ email: email });
-        console.log(getData);
+       user = await User.findOne({ email: email });
+      return res.status(200).json({ message: "User found" });
+        console.log(user);
     } catch (error) {
         console.log(error);
     }
 })
+router.get('/details', async (req, res) => {
+  console.log(user);
+  res.send(user);
+})
+
 module.exports = router;

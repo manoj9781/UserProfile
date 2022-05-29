@@ -6,7 +6,7 @@ function App() {
   return <div>
     <Routes>
       <Route exact path="/" element={<Signup />} />
-      <Route path="*" element={<Error/>} />
+      <Route path="*" element={<Error />} />
       </Routes>
   </div>;
 }

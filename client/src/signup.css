@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
 
 .signup{
-   margin-top: 24px;
+  margin-top: 24px;
    display: flex;
+   
 }
 .container{
     width: 70%;
@@ -35,7 +36,12 @@
     font-family: 'Times New Roman', Times, serif;
 
 }
-.form-group input:focus{
+.form-group select{
+    border: none;
+    margin-left: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.form-group input, select :focus{
     outline: none;
 }
 

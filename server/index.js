@@ -4,11 +4,12 @@ const app = express();
 require('./Database/mongoose');
 app.use(express.json());
 app.use(cors());
+const port = process.env.PORT || 5000;
 
 const User = require('./models/userSchema');
 app.use(require('./router/auth'));
 
-app.listen(5000, (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.log('Error', err);
   }
